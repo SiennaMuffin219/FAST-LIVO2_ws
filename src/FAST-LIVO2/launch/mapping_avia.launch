@@ -1,0 +1,68 @@
+<launch>
+<!-- Launch file for Livox AVIA LiDAR -->
+
+	<!-- Load FAST-LIVO2 config -->
+	<rosparam command="load" file="$(find fast_livo)/config/avia.yaml" />
+
+	<!-- RVIZ FAST-LIVO2 -->
+	<arg name="rviz" default="true" />
+	<group if="$(arg rviz)">
+		<node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find fast_livo)/rviz_cfg/fast_livo2.rviz" />
+	</group>
+	
+	
+	<!-- WIT IMU -->
+	<node pkg="wit_ros_imu" type="wit_optimised_ros.py" name="imu" respawn="true" output="screen">
+		<param name="port"               type = "str"    value="/dev/esp_usb"/>
+		<param name="baud"               type = "int"    value="230400"/>
+	</node>
+    	
+	<!-- MVS Camera -->
+	<node 
+		pkg="mvs_ros_driver"
+		type="grabImgWithTrigger"
+		name="mvs_camera_trigger"
+		args="$(find mvs_ros_driver)/config/left_camera_trigger.yaml"
+		respawn="true"
+		output="screen"
+	>
+    	<env name="LD_LIBRARY_PATH" value="/opt/ros/noetic/lib:/opt/MVS/lib/64:/opt/MVS/lib/32" />
+  	</node>
+
+	<!-- Uncompress images -->
+	<node pkg="image_transport" type="republish" name="republish" args="compressed in:=/left_camera/image raw out:=/left_camera/image" output="screen" respawn="true"/>
+    	
+    	<arg name="lvx_file_path" default="livox_test.lvx"/>
+	<arg name="bd_list" default=""/>
+	<arg name="xfer_format" default="1"/>
+	<arg name="multi_topic" default="0"/>
+	<arg name="data_src" default="0"/>
+	<arg name="publish_freq" default="10.0"/>
+	<arg name="output_type" default="0"/>
+	<arg name="rviz_enable" default="false"/>
+	<arg name="rosbag_enable" default="false"/>
+	<arg name="cmdline_arg" default="$(arg bd_list)"/>
+	<arg name="msg_frame_id" default="livox_frame"/>
+	<arg name="lidar_bag" default="true"/>
+	<arg name="imu_bag" default="true"/>
+
+	<param name="xfer_format" value="$(arg xfer_format)"/>
+	<param name="multi_topic" value="$(arg multi_topic)"/>
+	<param name="data_src" value="$(arg data_src)"/>
+	<param name="publish_freq" type="double" value="$(arg publish_freq)"/>
+	<param name="output_data_type" value="$(arg output_type)"/>
+	<param name="cmdline_str" type="string" value="$(arg bd_list)"/>
+	<param name="cmdline_file_path" type="string" value="$(arg lvx_file_path)"/>
+	<param name="user_config_path" type="string" value="$(find livox_ros_driver)/config/livox_lidar_config.json"/>
+	<param name="frame_id" type="string" value="$(arg msg_frame_id)"/>
+	<param name="enable_lidar_bag" type="bool" value="$(arg lidar_bag)"/>
+	<param name="enable_imu_bag" type="bool" value="$(arg imu_bag)"/>
+
+	<node name="livox_lidar_publisher" pkg="livox_ros_driver"
+	      type="livox_ros_driver_node" required="true"
+	      output="screen" args="$(arg cmdline_arg)"/>
+
+
+launch-prefix="gdb -ex run --args"
+launch-prefix="valgrind --leak-check=full"
+</launch> 	

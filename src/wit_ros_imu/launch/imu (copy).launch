@@ -1,0 +1,15 @@
+
+<!-- open imu and rviz -->
+<launch>
+
+    <!-- imu type, default normal -->
+    <arg name="type" default="optimised" doc="type [normal, modbus]"/>
+
+    <!-- imu python -->
+    <node pkg="wit_ros_imu" type="wit_$(arg type)_ros.py" name="imu" output="screen">
+        <param name="port"               type = "str"    value="/dev/imu_usb"/>
+        <param name="baud"               type = "int"    value="115200"/>
+	<remap from="/wit/imu" to="/livox/imu"/>
+    </node>
+
+</launch>   

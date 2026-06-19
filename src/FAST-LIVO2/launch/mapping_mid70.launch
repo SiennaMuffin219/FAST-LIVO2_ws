@@ -1,0 +1,19 @@
+<launch>
+<!-- Launch file for Livox MID 70 LiDAR -->
+
+	<!-- Load FAST-LIVO2 config -->
+	<rosparam command="load" file="$(find fast_livo)/config/mid70.yaml" />
+
+	<!-- RVIZ FAST-LIVO2 -->
+	<arg name="rviz" default="true" />
+	<group if="$(arg rviz)">
+		<node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find fast_livo)/rviz_cfg/fast_livo2.rviz" />
+	</group>
+	
+	<!-- FAST-LIVO2 -->
+	<node pkg="fast_livo" type="fastlivo_mapping" name="laserMapping" output="screen">
+	 launch-prefix="gdb -ex run --args"
+		<rosparam file="$(find fast_livo)/config/camera_pinhole.yaml" />
+		<env name="LD_LIBRARY_PATH" value="/home/ros/catkin_ws/devel/lib:/opt/ros/noetic/lib" />
+	</node>
+</launch> 	
