@@ -11,7 +11,7 @@
 	</group>
 	
 	<!-- WIT IMU -->
-	<node pkg="wit_ros_imu" type="wit_cpp" name="imu" respawn="true" output="screen">
+	<node pkg="wit_ros_imu" type="tdk_cpp" name="imu" respawn="true" output="screen">
 		<param name="port" type="str" value="/dev/esp_usb"/>
 		<param name="baud" type="int" value="230400"/>
 	</node>

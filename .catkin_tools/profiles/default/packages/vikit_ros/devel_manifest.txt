@@ -1,0 +1,5 @@
+rpg_vikit/vikit_ros
+/home/ros/FAST-LIVO2_ws/devel/.private/vikit_ros/share/vikit_ros/cmake/vikit_rosConfig.cmake /home/ros/FAST-LIVO2_ws/devel/share/vikit_ros/cmake/vikit_rosConfig.cmake
+/home/ros/FAST-LIVO2_ws/devel/.private/vikit_ros/share/vikit_ros/cmake/vikit_rosConfig-version.cmake /home/ros/FAST-LIVO2_ws/devel/share/vikit_ros/cmake/vikit_rosConfig-version.cmake
+/home/ros/FAST-LIVO2_ws/devel/.private/vikit_ros/lib/libvikit_ros.so /home/ros/FAST-LIVO2_ws/devel/lib/libvikit_ros.so
+/home/ros/FAST-LIVO2_ws/devel/.private/vikit_ros/lib/pkgconfig/vikit_ros.pc /home/ros/FAST-LIVO2_ws/devel/lib/pkgconfig/vikit_ros.pc

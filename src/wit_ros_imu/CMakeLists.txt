@@ -19,12 +19,16 @@ link_directories(
 )
 
 add_executable(wit_cpp src/wit.cpp)
+add_executable(tdk_cpp src/tdk.cpp)
 
 target_link_libraries(
   wit_cpp
   ${catkin_LIBRARIES}
 )
-
+target_link_libraries(
+  tdk_cpp
+  ${catkin_LIBRARIES}
+)
 install(DIRECTORY demo driver robot_para rviz
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

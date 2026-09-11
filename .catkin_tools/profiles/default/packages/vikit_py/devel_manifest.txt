@@ -1,0 +1,5 @@
+rpg_vikit/vikit_py
+/home/ros/FAST-LIVO2_ws/devel/.private/vikit_py/share/vikit_py/cmake/vikit_pyConfig-version.cmake /home/ros/FAST-LIVO2_ws/devel/share/vikit_py/cmake/vikit_pyConfig-version.cmake
+/home/ros/FAST-LIVO2_ws/devel/.private/vikit_py/share/vikit_py/cmake/vikit_pyConfig.cmake /home/ros/FAST-LIVO2_ws/devel/share/vikit_py/cmake/vikit_pyConfig.cmake
+/home/ros/FAST-LIVO2_ws/devel/.private/vikit_py/lib/pkgconfig/vikit_py.pc /home/ros/FAST-LIVO2_ws/devel/lib/pkgconfig/vikit_py.pc
+/home/ros/FAST-LIVO2_ws/devel/.private/vikit_py/lib/python3/dist-packages/vikit_py/__init__.py /home/ros/FAST-LIVO2_ws/devel/lib/python3/dist-packages/vikit_py/__init__.py
